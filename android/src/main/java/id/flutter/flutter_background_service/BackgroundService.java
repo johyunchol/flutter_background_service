@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -40,8 +41,8 @@ public class BackgroundService extends Service implements MethodChannel.MethodCa
     private DartExecutor.DartCallback dartCallback;
     private boolean isManuallyStopped = false;
 
-    String notificationTitle = "Background Service";
-    String notificationContent = "Running";
+    String notificationTitle = "잇차";
+    String notificationContent = "안정적인 서비스를 위해 위치정보를 수집합니다.";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -147,6 +148,7 @@ public class BackgroundService extends Service implements MethodChannel.MethodCa
             PendingIntent pi = PendingIntent.getActivity(BackgroundService.this, 99778, i, PendingIntent.FLAG_CANCEL_CURRENT);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "FOREGROUND_DEFAULT")
                     .setSmallIcon(R.drawable.ic_bg_service_small)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_bg_service_small))
                     .setAutoCancel(true)
                     .setOngoing(true)
                     .setContentTitle(notificationTitle)

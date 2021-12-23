@@ -100,7 +100,6 @@ public class BackgroundService extends Service implements MethodChannel.MethodCa
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
-        notificationContent = "Preparing";
         updateNotificationInfo();
     }
 
@@ -217,8 +216,8 @@ public class BackgroundService extends Service implements MethodChannel.MethodCa
             if (method.equalsIgnoreCase("setNotificationInfo")) {
                 JSONObject arg = (JSONObject) call.arguments;
                 if (arg.has("title")) {
-                    notificationTitle = arg.getString("title");
-                    notificationContent = arg.getString("content");
+//                    notificationTitle = arg.getString("title");
+//                    notificationContent = arg.getString("content");
                     updateNotificationInfo();
                     result.success(true);
                     return;
